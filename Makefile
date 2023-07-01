@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ncasteln <ncasteln@student.42.fr>          +#+  +:+       +#+         #
+#    By: nico <nico@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 15:52:36 by ncasteln          #+#    #+#              #
-#    Updated: 2023/04/07 11:52:33 by ncasteln         ###   ########.fr        #
+#    Updated: 2023/07/01 20:44:10 by nico             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
+CFLAGS = -Wall -Wextra -Werror
 SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c \
 	ft_strlcat.c ft_tolower.c ft_toupper.c ft_strchr.c ft_strrchr.c ft_strncmp.c \
@@ -26,11 +27,10 @@ OBJS = $(SRC:.c=.o)
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
+VPATH = src
 
 all: $(NAME) bonus
 
-# create archive & replace/add files - silently - write/update obj index
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
@@ -38,9 +38,8 @@ bonus: $(BONUS_OBJS)
 	ar rcs $(NAME) $(BONUS_OBJS)
 
 %.o: %.c
-	cc -c $(FLAGS) $< -o $@
+	cc -c $(FLAGS) $< -o $@ -I ./include
 
-# remove without care of permissions and without prompt confirmation
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
 
@@ -49,4 +48,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all, clean, fclean, re, bonus
