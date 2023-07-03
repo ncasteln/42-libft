@@ -6,7 +6,7 @@
 #    By: ncasteln <ncasteln@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 15:52:36 by ncasteln          #+#    #+#              #
-#    Updated: 2023/07/03 08:36:06 by ncasteln         ###   ########.fr        #
+#    Updated: 2023/07/03 14:12:39 by ncasteln         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,29 +22,39 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 	ft_striteri.c ft_putchar_fd.c ft_putendl_fd.c ft_putstr_fd.c ft_putnbr_fd.c
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-VPATH = src
+VPATH = ./src/
 
-OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-OBJ_DIR = ./obj/
-BONUS_OBJ = $(addprefix $(OBJ_DIR), $(BONUS_SRC:.c=.o))
+OBJS = $(addprefix $(OBJS_DIR), $(SRC:.c=.o))
+OBJS_DIR = ./objs/
+BONUS_OBJS = $(addprefix $(OBJS_DIR), $(BONUS_SRC:.c=.o))
 
-all: $(NAME) bonus
+all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS) $(BONUS_OBJS)
+	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	@echo "$(GREEN)$(NAME) successfully created!"
 
-bonus: $(BONUS_OBJ)
-	ar rcs $(NAME) $(BONUS_OBJ)
-
-$(OBJ_DIR)%.o: %.c
-	cc -c $(FLAGS) $< -o $@ -I ./include
+$(OBJS_DIR)%.o: %.c
+	@mkdir -p $(OBJS_DIR)
+	@cc $(CFLAGS) -c $< -o $@ -I ./include
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJS_DIR)
+	@echo "$(GREEN)$(NAME) objs successfully removed!"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(GREEN)$(NAME) successfully removed!"
 
 re: fclean all
+
+update:
+	git submodule update --init --recursive --remote
+	cd ./lib/liballme/ && git checkout modules && git pull
+
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RED = \033[0;31m
+NC = \033[0m
 
 .PHONY: all, clean, fclean, re, bonus
