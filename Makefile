@@ -6,7 +6,7 @@
 #    By: ncasteln <ncasteln@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 15:52:36 by ncasteln          #+#    #+#              #
-#    Updated: 2023/07/03 14:12:39 by ncasteln         ###   ########.fr        #
+#    Updated: 2023/07/03 14:19:34 by ncasteln         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,6 @@ fclean: clean
 	@echo "$(GREEN)$(NAME) successfully removed!"
 
 re: fclean all
-
-update:
-	git submodule update --init --recursive --remote
-	cd ./lib/liballme/ && git checkout modules && git pull
 
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
