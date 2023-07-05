@@ -6,12 +6,11 @@
 #    By: ncasteln <ncasteln@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 15:52:36 by ncasteln          #+#    #+#              #
-#    Updated: 2023/07/04 09:20:00 by ncasteln         ###   ########.fr        #
+#    Updated: 2023/07/05 09:31:41 by ncasteln         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
@@ -32,19 +31,19 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(BONUS_OBJS)
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-	@echo "$(GREEN)$(NAME) successfully created!"
+	@echo "$(GREEN)	$(NAME) successfully created!"
 
 $(OBJS_DIR)%.o: %.c
 	@mkdir -p $(OBJS_DIR)
-	@cc $(CFLAGS) -c $< -o $@ -I ./include
+	@$(CC) $(CFLAGS) -c $< -o $@ -I ./include
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@echo "$(GREEN)$(NAME) objs successfully removed!"
+	@echo "$(GREEN)	$(NAME) objs successfully removed!"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(GREEN)$(NAME) successfully removed!"
+	@echo "$(GREEN)	$(NAME) successfully removed!"
 
 re: fclean all
 
