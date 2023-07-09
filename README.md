@@ -40,4 +40,4 @@ cc <your_main.c> ./libft/libft.a -I ./libft/include/ -o <custom_name>
 
 **NOTE**
 
-libft is part of `mylib`, a personal collection of libraries and functions used in the 42 Heilbronn projects. [Check it out!]()
+libft is part of `mylib`, a personal collection of libraries and functions used in the 42 Heilbronn projects. [Check it out!](https://github.com/NicoCastelnuovo/mylib)
