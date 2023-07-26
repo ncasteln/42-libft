@@ -19,25 +19,18 @@ The bonus part involves functions to create [single linked lists](https://en.wik
 ```
 git clone git@github.com:NicoCastelnuovo/libft.git libft
 ```
-
 2. Navigate to the `libft` directory and `make` the library:
 ```
 cd libft
 make
 ```
-
-3.Include the header inside your .c file:
+3. Include the header inside your .c file:
 ```
 #include "libft.h"
 ```
-
 4. Compile your executable:
 ```
-cc <your_main.c> ./libft/libft.a -I ./libft/include/ -o <custom_name>
+cc <your_main.c> ./<libft_path>/libft.a -I ./<libft_path>/include/ -o <program_name>
 ```
 
 5. Enjoy!
-
-**NOTE**
-
-libft is part of `mylib`, a personal collection of libraries and functions used in the 42 Heilbronn projects. [Check it out!](https://github.com/NicoCastelnuovo/mylib)
